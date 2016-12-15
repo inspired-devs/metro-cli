@@ -1,0 +1,10 @@
+{
+  "latest": "default",
+  "official": [
+    {
+      "name": "default",
+      "description": "Main Webpack 2 boilerplate for Metro-vue v0.1+ with Vue 2"
+    }
+  ],
+  "community": []
+}

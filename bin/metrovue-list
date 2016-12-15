@@ -1,0 +1,37 @@
+#!/usr/bin/env node
+
+var
+  ora = require('ora'),
+  log = require('../lib/log'),
+  getList = require('../lib/template-list'),
+  spinner
+
+spinner = ora('Retrieving template lists...')
+spinner.start()
+
+getList(function (err, templates) {
+  spinner.stop()
+
+  if (err) {
+    log.fatal('Could not retrieve template lists: ' + err)
+    // ^^^ EARLY EXIT
+  }
+
+  log(' ' + 'Official'.bold + ' Metro-vue templates:')
+  log()
+  templates.official.forEach(function (template) {
+    log('  ★ ' + template.name.bold + ' (' + ('$ metrovue init ' + template.name + ' <folder_name>').gray + ')')
+    log('    ' + template.description.gray)
+    log()
+  })
+
+  if (templates.community.length > 0) {
+    log(' Community Metro-vue templates:')
+    log()
+    templates.community.forEach(function (template) {
+      log('  ★ ' + template.name.bold + ' (' + ('$ metrovue init ' + template.name + ' <folder_name>').gray + ')')
+      log('    ' + template.description.gray)
+      log()
+    })
+  }
+})

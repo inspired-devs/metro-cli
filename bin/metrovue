@@ -1,0 +1,41 @@
+#!/usr/bin/env node
+
+require('colors')
+
+var
+  commander = require('commander'),
+  updateNotifier = require('update-notifier'),
+  log = require('../lib/log')
+
+log()
+process.on('exit', function () {
+  log()
+})
+
+if (process.argv.length <= 2) {
+  log(
+    require('fs')
+      .readFileSync(require('path')
+      .join(__dirname, '../lib/logo.art'), 'utf8')
+  )
+}
+
+updateNotifier({
+  pkg: require('../package.json'),
+  updateCheckInterval: 1
+}).notify()
+
+commander
+  .version(require('../package').version)
+  .usage('<command> [options]')
+  .command('init [template] <folder>', 'create metrovue-vue App')
+  .command('list', 'list available app templates')
+  .parse(process.argv)
+
+var command = commander.args[0] // eslint-disable-line one-var
+
+if (!commander.commands.some(function (cmd) {
+  return cmd._name === command
+})) {
+  log.fatal('Command "' + command.gray + '" is not known. Check --help.')
+}
