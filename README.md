@@ -17,7 +17,7 @@ MetroVue Framework is an MIT-licensed open source project. Its ongoing developme
 
 Display list of commands:
 
-`$ quasar`
+`$ metrovue`
 
 - `init` - create app from template
 - `list` - list app boilerplate templates

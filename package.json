@@ -1,6 +1,6 @@
 {
   "name": "metrovue-cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "MetroVue Framework CLI",
   "preferGlobal": true,
   "bin": {
